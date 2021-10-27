@@ -4,7 +4,6 @@
 
 import rospy
 from sensor_msgs.msg import LaserScan
-from nav_msgs.msg import OccupancyGrid
 import numpy as np
 
 
@@ -18,7 +17,7 @@ class Filter:
         arr = np.array(msg.ranges)
         mask = np.zeros_like(arr, dtype=bool)
         for i in range(1, len(arr) - 1):
-            if min(abs(arr[i - 1] - arr[i]), abs(arr[i + 1] - arr[i])) < 0.01:
+            if (abs(arr[i - 1] + arr[i + 1] - 2 * arr[i])) < 0.2:
                 mask[i] = True
                 
         msg.ranges = tuple((arr * mask).tolist())

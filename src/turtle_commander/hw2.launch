@@ -1,6 +1,7 @@
 <launch>
-    <node pkg='rviz' type='rviz' name='rviz' />
     <node pkg='rqt_graph' type='rqt_graph' name='rqt_graph' />
     <node pkg="rosbag" type="play" name="rosbag" args="/home/eugene/Downloads/2011-01-25-06-29-26.bag"/>
     <node pkg='turtle_commander' type='filter.py' name='scan_filter' />
+    <node pkg='turtle_commander' type='map.py' name='map_builder' />
+    <node pkg='rviz' type='rviz' name='rviz' args="-d /home/eugene/Documents/ros_ws/src/turtle_commander/config.rviz" />
 </launch>
